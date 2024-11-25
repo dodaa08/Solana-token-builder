@@ -7,7 +7,7 @@ import {
 import { PhantomWalletAdapter, SolflareWalletAdapter } from '@solana/wallet-adapter-wallets';
 
 import '@solana/wallet-adapter-react-ui/styles.css';
-import { Tokenlaunch } from './components/Tokenlaunch';
+import Tokenlaunch from './components/Tokenlaunch';
 
 function App() {
     const wallets = [

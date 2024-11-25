@@ -1,11 +1,8 @@
 import { Keypair, SystemProgram, Transaction } from "@solana/web3.js";
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { MINT_SIZE, TOKEN_2022_PROGRAM_ID, createMintToInstruction, createAssociatedTokenAccountInstruction, getMintLen, createInitializeMetadataPointerInstruction, createInitializeMintInstruction, TYPE_SIZE, LENGTH_SIZE, ExtensionType, mintTo, getOrCreateAssociatedTokenAccount, getAssociatedTokenAddressSync } from "@solana/spl-token"
+import { TOKEN_2022_PROGRAM_ID, createMintToInstruction, createAssociatedTokenAccountInstruction, getMintLen, createInitializeMetadataPointerInstruction, createInitializeMintInstruction, TYPE_SIZE, LENGTH_SIZE, ExtensionType, getAssociatedTokenAddressSync } from "@solana/spl-token"
 import { createInitializeInstruction, pack } from '@solana/spl-token-metadata';
-import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
-import { createInitializeMint2Instruction } from "@solana/spl-token";
 import { useState } from "react";
-import {  getMinimumBalanceForRentExemptMint } from "@solana/spl-token"
 
 export default function Tokenlaunch() {
     const [name , setName] = useState('');
@@ -26,7 +23,6 @@ export default function Tokenlaunch() {
             uri: image,
             additionalMetadata: [],
         };
-
         const mintLen = getMintLen([ExtensionType.MetadataPointer]);
         const metadataLen = TYPE_SIZE + LENGTH_SIZE + pack(metadata).length;
 
@@ -83,12 +79,12 @@ export default function Tokenlaunch() {
         await wallet.sendTransaction(transaction2, connection);
 
         const transaction3 = new Transaction().add(
-            createMintToInstruction(mintKeypair.publicKey, associatedToken, wallet.publicKey, supply, [], TOKEN_2022_PROGRAM_ID)
+            createMintToInstruction(mintKeypair.publicKey, associatedToken, wallet.publicKey, 1000000000, [], TOKEN_2022_PROGRAM_ID)
         );
 
         await wallet.sendTransaction(transaction3, connection);
 
-        console.log("Minted!")
+        console.log("Minted!");
     }
     
 

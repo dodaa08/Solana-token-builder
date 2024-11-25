@@ -5,7 +5,7 @@ import {
     WalletMultiButton
 } from '@solana/wallet-adapter-react-ui';
 import { PhantomWalletAdapter, SolflareWalletAdapter } from '@solana/wallet-adapter-wallets';
-import { clusterApiUrl } from '@solana/web3.js';
+
 import '@solana/wallet-adapter-react-ui/styles.css';
 import { Tokenlaunch } from './components/Tokenlaunch';
 
